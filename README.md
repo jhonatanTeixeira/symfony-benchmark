@@ -13,4 +13,4 @@ Foi usado uma versão com microkernel, uma versão standard e a versão api-plat
 * web1 = symfony 3 standard
 * web2 = Diego Nobre symfony microkernel
 * web3 = Api Platform
-* Usa uma imagem de docker que é uma copia da instalação de prod da vox, com as mesmas libs de opcode e versão de php
+* Usa uma imagem de docker customizada, que contem pacotes de opcache e versão de apache escolhida
