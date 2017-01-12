@@ -1,0 +1,49 @@
+version: '2'
+
+services:
+    web1:
+        image: voxtecnologia/php7
+        volumes:
+            - ./web1:/var/www/project
+            - ./web1/apache:/etc/apache2/sites-enabled
+        working_dir: /var/www/project
+        ports:
+             - 8000:80
+            
+    web2:
+        image: voxtecnologia/php7
+        volumes:
+            - ./web2:/var/www/project
+            - ./web2/apache:/etc/apache2/sites-enabled
+        working_dir: /var/www/project
+        ports:
+             - 8001:80
+            
+    web3:
+        image: voxtecnologia/php7
+        volumes:
+            - ./web3:/var/www/project
+            - ./web3/apache:/etc/apache2/sites-enabled
+        links:
+            - database
+        environment:
+            SYMFONY_ENV: prod
+        working_dir: /var/www/project
+        ports:
+             - 8002:80
+
+    database:
+        image: mysql
+        environment:
+            MYSQL_ROOT_PASSWORD: changeme
+            MYSQL_DATABASE: api_platform
+            MYSQL_USER: api_platform
+            MYSQL_PASSWORD: api_platform
+            
+    stress-test:
+        image: devth/alpine-bench
+        links:
+            - web1
+            - web2
+            - web3
+            

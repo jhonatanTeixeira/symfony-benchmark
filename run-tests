@@ -1,0 +1,3 @@
+docker-compose run stress-test -n 100 http://web1/app.php
+docker-compose run stress-test -n 100 http://web2/app.php
+docker-compose run stress-test -n 100 http://web3/app.php
