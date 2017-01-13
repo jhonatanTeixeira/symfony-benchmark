@@ -9,13 +9,16 @@ echo --------------------------------------------------------------
 echo 
 
 echo ------------------ Symfony standard --------------------------
-docker-compose run stress-test -n 1000 http://web1/app.php/foos.json
+docker-compose run stress-test -n 1000 http://web1/foos.json
 echo
 echo ------------------ Symfony microkernel -----------------------
 docker-compose run stress-test -n 1000 http://web2/app.php/foos.json
 echo 
 echo ------------------ Symfony Api Platform ----------------------
-docker-compose run stress-test -n 1000 http://web3/app.php/foos.json
+docker-compose run stress-test -n 1000 http://web3/foos.json
+echo 
+echo ------------------ Zend Expressive --------------------------
+docker-compose run stress-test -n 1000 http://web4/foos.json
 
 echo 
 echo --------------------------------------------------------------
@@ -24,10 +27,13 @@ echo --------------------------------------------------------------
 echo 
 
 echo ------------------ Symfony standard --------------------------
-docker-compose run stress-test -n 1000 -c 200 http://web1/app.php/foos.json
+docker-compose run stress-test -n 1000 -c 200 http://web1/foos.json
 echo
 echo ------------------ Symfony microkernel -----------------------
 docker-compose run stress-test -n 1000 -c 200 http://web2/app.php/foos.json
 echo
 echo ------------------ Symfony Api Platform ----------------------
-docker-compose run stress-test -n 1000 -c 200 http://web3/app.php/foos.json
+docker-compose run stress-test -n 1000 -c 200 http://web3/foos.json
+echo 
+echo ------------------ Zend Expressive ---------------------------
+docker-compose run stress-test -n 1000 -c 200 http://web4/foos.json
