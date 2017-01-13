@@ -1,20 +1,15 @@
-export SYMFONY_ENV=prod
-cd web1
-composer install -n -o
-bin/console cache:warmup --env prod
+chmod -R 777 .
 
-cd ../web2
-composer install -n -o
-bin/console cache:warmup --env prod
+docker-compose run composer -d=/web1 install -n -o
+docker-compose run composer -d=/web2 install -n -o
+docker-compose run composer -d=/web3 install -n -o
 
-cd ../web3
-composer install -n -o
-bin/console cache:warmup --env prod
-
-cd ../
+docker-compose exec web1 bin/console cache:warmup
+docker-compose exec web2 bin/console cache:warmup
+docker-compose exec web3 bin/console cache:warmup
 
 chmod -R 777 .
 
-docker-compose exec web3 bin/console doctrine:schema:drop
+docker-compose exec web3 bin/console doctrine:schema:drop --force
 docker-compose exec web3 bin/console doctrine:schema:create
 

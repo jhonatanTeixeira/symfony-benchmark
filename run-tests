@@ -1,3 +1,33 @@
-docker-compose run stress-test -n 100 http://web1/app.php
-docker-compose run stress-test -n 100 http://web2/app.php
-docker-compose run stress-test -n 100 http://web3/app.php
+echo ------------ Machine Specs -------------------
+lscpu
+cat /proc/meminfo
+echo -----------------------------
+echo 
+
+echo RODANDO TESTES SIMPLES SEM CONCORRENCIA
+echo --------------------------------------------------------------
+echo 
+
+echo ------------------ Symfony standard --------------------------
+docker-compose run stress-test -n 1000 http://web1/app.php
+echo
+echo ------------------ Symfony microkernel -----------------------
+docker-compose run stress-test -n 1000 http://web2/app.php
+echo 
+echo ------------------ Symfony Api Platform ----------------------
+docker-compose run stress-test -n 1000 http://web3/app.php
+
+echo 
+echo --------------------------------------------------------------
+echo RODANDO TESTES COMPLEXOS COM CONCORRENCIA
+echo --------------------------------------------------------------
+echo 
+
+echo ------------------ Symfony standard --------------------------
+docker-compose run stress-test -n 1000 -c 200 http://web1/app.php
+echo
+echo ------------------ Symfony microkernel -----------------------
+docker-compose run stress-test -n 1000 -c 200 http://web2/app.php
+echo
+echo ------------------ Symfony Api Platform ----------------------
+docker-compose run stress-test -n 1000 -c 200 http://web3/app.php

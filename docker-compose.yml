@@ -18,6 +18,8 @@ services:
         working_dir: /var/www/project
         ports:
              - 8001:80
+        links:
+             - database
             
     web3:
         image: voxtecnologia/php7
@@ -31,6 +33,17 @@ services:
         working_dir: /var/www/project
         ports:
              - 8002:80
+
+    composer:
+        image: composer/composer
+        environment:
+            SYMFONY_ENV: prod
+        volumes: 
+            - ./web1:/web1
+            - ./web2:/web2
+            - ./web3:/web3
+        links:
+            - database
 
     database:
         image: mysql
