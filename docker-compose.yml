@@ -11,6 +11,8 @@ services:
              - 8000:80
         links:
              - database
+        environment:
+            SYMFONY_ENV: prod
             
     web2:
         image: voxtecnologia/php7
@@ -22,6 +24,8 @@ services:
              - 8001:80
         links:
              - database
+        environment:
+            SYMFONY_ENV: prod
             
     web3:
         image: voxtecnologia/php7
@@ -35,6 +39,19 @@ services:
         working_dir: /var/www/project
         ports:
              - 8002:80
+
+    web4:
+        image: voxtecnologia/php7
+        volumes:
+            - ./web4:/var/www/project
+            - ./web4/apache:/etc/apache2/sites-enabled
+        links:
+            - database
+        environment:
+            SYMFONY_ENV: prod
+        working_dir: /var/www/project
+        ports:
+             - 8003:80
 
     database:
         image: mysql

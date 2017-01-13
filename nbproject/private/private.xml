@@ -4,7 +4,6 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/vox/benchmark/run-tests</file>
-            <file>file:/vox/benchmark/docker-compose.yml</file>
         </group>
     </open-files>
 </project-private>

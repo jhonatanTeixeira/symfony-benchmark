@@ -14,3 +14,8 @@ chmod -R 777 .
 docker-compose exec web3 bin/console doctrine:schema:drop --force
 docker-compose exec web3 bin/console doctrine:schema:create
 
+docker-compose exec web3 curl -X POST --header 'Content-Type: application/json' --header 'Accept: application/ld+json' -d '{ "bar": "string1" }' 'http://web3/app.php/foos'
+docker-compose exec web3 curl -X POST --header 'Content-Type: application/json' --header 'Accept: application/ld+json' -d '{ "bar": "string2" }' 'http://web3/app.php/foos'
+
+echo 
+

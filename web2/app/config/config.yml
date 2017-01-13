@@ -20,6 +20,7 @@ framework:
     php_errors:
         log: true
     profiler: { only_exceptions: false }
+    serializer:      { enable_annotations: true }
 
 # Twig Configuration
 twig:
@@ -45,5 +46,15 @@ doctrine:
 
     orm:
         auto_generate_proxy_classes: "%kernel.debug%"
-        naming_strategy: doctrine.orm.naming_strategy.underscore
-        auto_mapping: true
+        #naming_strategy: doctrine.orm.naming_strategy.underscore
+        
+        entity_managers:
+            default:
+                auto_mapping: true
+                mappings:
+                    app:
+                        mapping: true
+                        dir: "%kernel.root_dir%/../src/App/Entity"
+                        type: annotation
+                        prefix: App\Entity
+                        is_bundle: false
