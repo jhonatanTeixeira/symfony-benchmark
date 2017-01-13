@@ -1,11 +1,12 @@
 chmod -R 777 .
 
-docker-compose run composer -d=/web1 install -n -o
-docker-compose run composer -d=/web2 install -n -o
-docker-compose run composer -d=/web3 install -n -o
-
+docker-compose exec web1 composer install -n -o
 docker-compose exec web1 bin/console cache:warmup
+
+docker-compose exec web2 composer install -n -o
 docker-compose exec web2 bin/console cache:warmup
+
+docker-compose exec web3 composer install -n -o
 docker-compose exec web3 bin/console cache:warmup
 
 chmod -R 777 .
